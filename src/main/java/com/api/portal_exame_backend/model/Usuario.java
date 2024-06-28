@@ -1,9 +1,17 @@
 package com.api.portal_exame_backend.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,12 +31,17 @@ public class Usuario {
     private boolean enabled = true;
     private String perfil;
 
+    // Um Usuário pode ter muitos UsuarioRole
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usuario")
+    @JsonIgnore
+    private Set<UsuarioRole> usuarioRoles = new HashSet<>();
+
     // Construtores
     public Usuario() {
     }
 
     public Usuario(Long id, String username, String password, String firstname, String lastname, String email,
-            String phone, boolean enabled, String perfil) {
+            String phone, boolean enabled, String perfil, Set<UsuarioRole> usuarioRoles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -38,6 +51,7 @@ public class Usuario {
         this.phone = phone;
         this.enabled = enabled;
         this.perfil = perfil;
+        this.usuarioRoles = usuarioRoles;
     }
 
     // Métodos Getters e Setters
@@ -111,6 +125,14 @@ public class Usuario {
 
     public void setPerfil(String perfil) {
         this.perfil = perfil;
+    }
+
+    public Set<UsuarioRole> getUsuarioRoles() {
+        return usuarioRoles;
+    }
+
+    public void setUsuarioRoles(Set<UsuarioRole> usuarioRoles) {
+        this.usuarioRoles = usuarioRoles;
     }
 
 }
