@@ -11,6 +11,8 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class UsuarioRole {
 
+    // Essa classe vai armazenar os ids de relacionamento do UsuarioRole, Usuario e Role
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long usuarioRoleId;

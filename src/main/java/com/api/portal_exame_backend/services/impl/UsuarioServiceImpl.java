@@ -23,7 +23,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario criarUsuario(Usuario usuario, Set<UsuarioRole> usuarioRoles) throws Exception {
         
-        Usuario novoUsuario = usuarioRepository.findbyUsername(usuario.getUsername());
+        Usuario novoUsuario = usuarioRepository.findByUsername(usuario.getUsername());
         if (novoUsuario != null) {
             System.out.println("Usuário já existe");
             throw new Exception("Usuário já existe");

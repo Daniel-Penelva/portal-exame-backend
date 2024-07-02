@@ -14,6 +14,8 @@ import jakarta.persistence.Table;
 @Table(name = "roles")
 public class Role {
 
+    // Essa classe vai armazenar o id e o papel role
+
     @Id
     private Long roleId;
     private String roleName;

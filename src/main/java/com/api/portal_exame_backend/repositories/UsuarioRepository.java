@@ -8,5 +8,5 @@ import com.api.portal_exame_backend.model.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    public Usuario findbyUsername(String username);
+    public Usuario findByUsername(String username);
 }

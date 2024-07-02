@@ -18,6 +18,8 @@ import jakarta.persistence.Table;
 @Table(name = "usuarios")
 public class Usuario {
 
+    // Essa classe vai armazenar os dados do usuário
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
