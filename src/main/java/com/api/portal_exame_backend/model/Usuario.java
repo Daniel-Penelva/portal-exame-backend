@@ -32,6 +32,8 @@ public class Usuario {
     private String perfil;
 
     // Um Usuário pode ter muitos UsuarioRole
+    // Estou utilizando o FetchType.EAGER que é uma estratégia que os dados são carregados imediatamente junto com a entidade proprietaria (pai).
+    // O mappedyBy="usuario" define que o usuario é o dono desse relacionamento
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usuario")
     @JsonIgnore
     private Set<UsuarioRole> usuarioRoles = new HashSet<>();
