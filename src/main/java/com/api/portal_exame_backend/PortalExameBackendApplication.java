@@ -25,6 +25,7 @@ public class PortalExameBackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		/* 
 		Usuario usuario = new Usuario();
 		usuario.setFirstname("Biana");
 		usuario.setLastname("Penelva");
@@ -49,7 +50,7 @@ public class PortalExameBackendApplication implements CommandLineRunner {
 		Usuario criaUsuario = usuarioService.criarUsuario(usuario, usuarioRoles);
 
 		System.out.println(criaUsuario.getUsername());
-
+		*/
 	}
 
 }
