@@ -37,4 +37,14 @@ public class UsuarioServiceImpl implements UsuarioService {
         return novoUsuario;
     }
 
+    @Override
+    public Usuario obterUsuario(String username) {
+        return usuarioRepository.findByUsername(username);
+    }
+
+    @Override
+    public void removerUsuario(Long id) {
+        usuarioRepository.deleteById(id);
+    }
+
 }
