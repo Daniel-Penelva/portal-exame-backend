@@ -26,6 +26,8 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    // Corrigindo a associação UsuarioRole entre Usuario e Role
+    /* Esse método cria um novo usuário, define seu perfil padrão, cria uma nova PERMISSÃO (ou papel) de usuário (role) e associa o usuário a esse papel USER. */
     // http://localhost:8080/usuarios/
     @PostMapping("/")
     public Usuario criarUsuario(@RequestBody Usuario usuario) throws Exception {
@@ -38,10 +40,11 @@ public class UsuarioController {
         role.setRoleId(2L);
         role.setRoleName("USER");
 
-        UsuarioRole usuarioRole = new UsuarioRole();
-        usuarioRole.setUsuario(usuario);
-        usuarioRole.setRole(role);
+        UsuarioRole usuarioRole = new UsuarioRole();               // Esse objeto representa a associação entre um usuário e um role.
+        usuarioRole.setUsuario(usuario);                           // vincula o usuário criado anteriormente ao objeto de associação.
+        usuarioRole.setRole(role);                                 // vincula o papel (ou permissão) USER criada anteriormente ao objeto de associação.
 
+       usuRoles.add(usuarioRole);                                  // adiciona o objeto usuarioRole ao conjunto usuRoles.
         return usuarioService.criarUsuario(usuario, usuRoles);
     }
 
