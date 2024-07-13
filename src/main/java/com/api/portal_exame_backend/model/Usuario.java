@@ -1,7 +1,11 @@
 package com.api.portal_exame_backend.model;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,7 +20,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class Usuario implements UserDetails{
 
     // Essa classe vai armazenar os dados do usuário
 
@@ -139,4 +143,57 @@ public class Usuario {
         this.usuarioRoles = usuarioRoles;
     }
 
+    // Implementações dos métodos UserDetails, tb inclui os métodos getUsername() e getPassword()
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        
+        Set<Authority> autoridades = new HashSet<>();
+        this.usuarioRoles.forEach(usuarioRole -> {
+            autoridades.add(new Authority(usuarioRole.getRole().getRoleName()));
+        });
+        return autoridades;
+    }
+
+    
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
 }
+
+/* A interface UserDetails fornece as informações essenciais sobre um usuário, que são usadas pelo Spring Security para autenticação e 
+ * autorização. Com essa interface o Spring Security trabalha armazenando os usuários. Sobre os métodos sobreescritos:
+ * 
+ * 1. Collection<? extends GrantedAuthority> getAuthorities():
+ * Retorna as autoridades concedidas ao usuário. Essas autoridades são representadas como roles (papéis) ou permissões.
+ * 
+ * 2. String getPassword():
+ * Retorna a senha do usuário.
+ * 
+ * 3. String getUsername():
+ * Retorna o nome de usuário usado para autenticação.
+ * 
+ * 4. boolean isAccountNonExpired():
+ * Indica se a conta do usuário expirou. Uma conta expirada não pode ser usada para autenticação.
+ * 
+ * 5. boolean isAccountNonLocked():
+ *  Indica se a conta do usuário está bloqueada. Uma conta bloqueada não pode ser usada para autenticação.
+ * 
+ * 6. boolean isCredentialsNonExpired():
+ * Indica se as credenciais do usuário (senha) expiraram. Credenciais expiradas impedem a autenticação.
+ * 
+ * 7. boolean isEnabled():
+ * Indica se o usuário está habilitado. Um usuário desabilitado não pode ser autenticado.
+ * 
+*/
