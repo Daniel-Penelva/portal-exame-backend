@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,17 +27,26 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     // Corrigindo a associação UsuarioRole entre Usuario e Role
     /* Esse método cria um novo usuário, define seu perfil padrão, cria uma nova PERMISSÃO (ou papel) de usuário (role) e associa o usuário a esse papel USER. */
     // http://localhost:8080/usuarios/
     @PostMapping("/")
     public Usuario criarUsuario(@RequestBody Usuario usuario) throws Exception {
 
+        // Codifica a senha do usuário antes de salvar
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+
         usuario.setPerfil("default.png");
 
         Set<UsuarioRole> usuRoles = new HashSet<>();
 
         Role role = new Role();
+        //role.setRoleId(1L);
+        //role.setRoleName("ADMIN");
+
         role.setRoleId(2L);
         role.setRoleName("USER");
 
