@@ -5,6 +5,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.api.portal_exame_backend.exception.UsuarioFoundException;
 import com.api.portal_exame_backend.model.Usuario;
 import com.api.portal_exame_backend.model.UsuarioRole;
 import com.api.portal_exame_backend.repositories.RoleRepository;
@@ -26,7 +27,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario novoUsuario = usuarioRepository.findByUsername(usuario.getUsername());
         if (novoUsuario != null) {
             System.out.println("Usuário já existe");
-            throw new Exception("Usuário já existe");
+            throw new UsuarioFoundException("Usuário já existe");
         } else {
             for (UsuarioRole usuRole : usuarioRoles) {
                 roleRepository.save(usuRole.getRole());

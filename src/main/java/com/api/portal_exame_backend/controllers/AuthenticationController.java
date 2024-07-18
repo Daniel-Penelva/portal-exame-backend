@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.portal_exame_backend.configuration.JwtUtils;
+import com.api.portal_exame_backend.exception.UsuarioNotFoundException;
 import com.api.portal_exame_backend.model.JwtRequest;
 import com.api.portal_exame_backend.model.JwtResponse;
 import com.api.portal_exame_backend.model.Usuario;
@@ -39,7 +40,7 @@ public class AuthenticationController {
     public ResponseEntity<?> generarToken(@RequestBody JwtRequest jwtRequest) throws Exception {
         try{
             autenticar(jwtRequest.getUsername(),jwtRequest.getPassword());
-        }catch (Exception exception){
+        }catch (UsuarioNotFoundException exception){
             exception.printStackTrace();
             throw new Exception("Usuário não encontrado");
         }
@@ -61,7 +62,7 @@ public class AuthenticationController {
 
     // http://localhost:8080/actual-usuario
     @GetMapping("/actual-usuario")
-    public Usuario obtenerUsuarioActual(Principal principal){
+    public Usuario obterUsuarioAtual(Principal principal){
         return (Usuario) this.userDetailsService.loadUserByUsername(principal.getName());
     }
     

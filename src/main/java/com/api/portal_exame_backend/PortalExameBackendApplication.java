@@ -1,23 +1,19 @@
 package com.api.portal_exame_backend;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.api.portal_exame_backend.model.Role;
-import com.api.portal_exame_backend.model.Usuario;
-import com.api.portal_exame_backend.model.UsuarioRole;
-import com.api.portal_exame_backend.services.UsuarioService;
-
 @SpringBootApplication
 public class PortalExameBackendApplication implements CommandLineRunner {
 
+	/* 
 	@Autowired
 	private UsuarioService usuarioService;
+
+	@Autowired
+    private PasswordEncoder passwordEncoder;
+	*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(PortalExameBackendApplication.class, args);
@@ -25,12 +21,12 @@ public class PortalExameBackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		/* 
+/* try{
 		Usuario usuario = new Usuario();
 		usuario.setFirstname("Biana");
 		usuario.setLastname("Penelva");
 		usuario.setUsername("bi4.penelva");
-		usuario.setPassword("123");
+		usuario.setPassword(passwordEncoder.encode("123"));
 		usuario.setEmail("biana@gmail.com");
 		usuario.setPhone("21993445566");
 		usuario.setPerfil("foto.png");
@@ -49,8 +45,11 @@ public class PortalExameBackendApplication implements CommandLineRunner {
 
 		Usuario criaUsuario = usuarioService.criarUsuario(usuario, usuarioRoles);
 
-		System.out.println(criaUsuario.getUsername());
-		*/
+		System.out.println(criaUsuario.getUsername()); 
+	} catch (UsuarioFoundException exception){
+			exception.printStackTrace();
+	}
+*/
 	}
 
 }
