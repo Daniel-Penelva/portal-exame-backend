@@ -1,9 +1,11 @@
 package com.api.portal_exame_backend.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +21,10 @@ public class Exame {
     private String pontosMaximos;
     private String numeroDePerguntas;
     private boolean ativo = false;
+
+    // Muitos exames para uma categoria
+    @ManyToOne(fetch = FetchType.EAGER)  // Aqui, a estratégia de carregamento dos dados aplica que a categoria associada a um exame será carregada imediatamente junto com o exame.
+    private Categoria categoria;
 
     public Exame() {
     }
@@ -79,6 +85,14 @@ public class Exame {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
 }
