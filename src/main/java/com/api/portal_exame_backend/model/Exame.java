@@ -1,11 +1,18 @@
 package com.api.portal_exame_backend.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,6 +32,11 @@ public class Exame {
     // Muitos exames para uma categoria
     @ManyToOne(fetch = FetchType.EAGER)  // Aqui, a estratégia de carregamento dos dados aplica que a categoria associada a um exame será carregada imediatamente junto com o exame.
     private Categoria categoria;
+
+    // Um exame para muitas perguntas
+    @OneToMany(mappedBy = "exame", fetch = FetchType.LAZY, cascade = CascadeType.ALL)  // fetch = FetchType.LAZY: Define que a busca das perguntas associadas a um exame será feita de maneira "preguiçosa", ou seja,  as perguntas não serão carregadas imediatamente com o exame, mas apenas quando forem explicitamente acessadas. 
+    @JsonIgnore
+    private Set<Pergunta> perguntas = new HashSet<>();
 
     public Exame() {
     }
@@ -93,6 +105,14 @@ public class Exame {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public Set<Pergunta> getPerguntas() {
+        return perguntas;
+    }
+
+    public void setPerguntas(Set<Pergunta> perguntas) {
+        this.perguntas = perguntas;
     }
 
 }

@@ -2,9 +2,11 @@ package com.api.portal_exame_backend.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
@@ -28,6 +30,10 @@ public class Pergunta {
 
     @Transient
     private String respostaDada; // campo transitório, ou seja, significa que o campo não será persistido no banco de dados. 
+
+    // Muitas perguntas para um exame
+    @ManyToOne(fetch = FetchType.EAGER) // Aqui o valor FetchType.EAGER define que a busca do exame associado a uma pergunta será feita de maneira "ansiosa". Com EAGER, o exame será carregado imediatamente junto com a pergunta.
+    private Exame exame;
 
     public Pergunta() {
     }
@@ -115,6 +121,14 @@ public class Pergunta {
 
     public void setRespostaDada(String respostaDada) {
         this.respostaDada = respostaDada;
+    }
+
+    public Exame getExame() {
+        return exame;
+    }
+
+    public void setExame(Exame exame) {
+        this.exame = exame;
     }
 
 }
