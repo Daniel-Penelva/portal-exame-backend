@@ -20,3 +20,47 @@ GET http://localhost:8080/usuarios/v4nnsa
 
 ### REMOVER USUARIO
 DELETE http://localhost:8080/usuarios/6
+
+
+### CRIAR TOKEN
+POST http://localhost:8080/generate-token HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "admin123",
+    "password": "123"
+}
+
+### BUSCAR USUÁRIO QUE ESTÁ LOGADO
+GET http://localhost:8080/actual-usuario
+
+
+### CRIAR CATEGORIA
+POST http://localhost:8080/categoria/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "titulo": "Linguagens de Programação",
+    "descricao": "Está é uma categoria que contém exames relacionados a linguagem de programação"   
+}
+
+### ATUALIZAR CATEGORIA
+PUT http://localhost:8080/categoria/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "categoriaId": 1,
+    "titulo": "Linguagens de Programação",
+    "descricao": "Está é uma categoria que contém exames relacionados a linguagem de programação"   
+}
+
+### BUSCAR TODAS CATEGORIAS
+GET http://localhost:8080/categoria/
+
+### BUSCAR CATEGORIA POR ID
+GET http://localhost:8080/categoria/1
+
+### DELETAR CATEGORIA POR ID
+DELETE http://localhost:8080/categoria/1
+
+
