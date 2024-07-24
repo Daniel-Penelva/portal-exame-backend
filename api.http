@@ -16,10 +16,12 @@ Content-Type: application/json
 
 
 ### OBTER USUARIO
-GET http://localhost:8080/usuarios/v4nnsa
+GET http://localhost:8080/usuarios/admin123
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
 
 ### REMOVER USUARIO
 DELETE http://localhost:8080/usuarios/6
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
 
 
 ### CRIAR TOKEN
@@ -33,6 +35,7 @@ Content-Type: application/json
 
 ### BUSCAR USUÁRIO QUE ESTÁ LOGADO
 GET http://localhost:8080/actual-usuario
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
 
 
 ### CRIAR CATEGORIA
@@ -56,11 +59,125 @@ Content-Type: application/json
 
 ### BUSCAR TODAS CATEGORIAS
 GET http://localhost:8080/categoria/
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
 
 ### BUSCAR CATEGORIA POR ID
 GET http://localhost:8080/categoria/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
 
 ### DELETAR CATEGORIA POR ID
 DELETE http://localhost:8080/categoria/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
+
+
+### CRIAR EXAME
+POST http://localhost:8080/exame/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "titulo" : "Teste de Padroes de Projeto",
+    "descricao": "Com este exame poderá colocar em pratica seus conhecimentos sobre JAVA e Padrões de Projeto",
+    "pontosMaximos": "20",
+    "numeroDePerguntas": "10",
+    "ativo": true,
+    "categoria" : {
+        "categoriaId": "1"
+    }
+}
+
+### ATUALIZAR EXAME
+PUT http://localhost:8080/exame/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "exameId": 1,
+    "titulo" : "Teste de JAVA SE",
+    "descricao": "Este exame é para colocar em pratica seus conhecimentos sobre JAVA Core e Programação Orientado a Objeto",
+    "pontosMaximos": "20",
+    "numeroDePerguntas": "10",
+    "categoria" : {
+        "categoriaId": "1"
+    }
+}
+
+### BUSCAR TODOS OS EXAMES
+GET http://localhost:8080/exame/
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
+
+### BUSCAR EXAME POR ID
+GET http://localhost:8080/exame/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
+
+### DELETAR EXAME POR ID
+DELETE http://localhost:8080/exame/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
+
+### BUSCAR EXAME POR CATEGORIA
+GET http://localhost:8080/exame/categoria/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
+
+### BUSCAR EXAME ATIVO
+GET http://localhost:8080/exame/ativo
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
+
+### BUSCAR EXAME ATIVO DE UMA CATEGORIA
+GET http://localhost:8080/exame/categoria/ativo/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
+
+
+### CRIAR PERGUNTA
+POST http://localhost:8080/pergunta/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "conteudo": "O que é POO?",
+    "imagem": "poo.png",
+    "opcao1": "Paradigma de programação",
+    "opcao2": "É um conjunto de elementos relacionados",
+    "opcao3": "É uma linguagem de programação orientada a objeto",
+    "opcao4": "São designs de padrões",
+    "resposta": "Paradigma de programação",
+    "exame": {
+        "exameId": 1
+    }
+}
+
+### ATUALIZAR PERGUNTA
+PUT http://localhost:8080/pergunta/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "perguntaId": 1,
+    "conteudo": "O que é Programação Orientada a Objeto?",
+    "imagem": "poo.png",
+    "opcao1": "Paradigma de programação",
+    "opcao2": "É um conjunto de elementos relacionados",
+    "opcao3": "É uma linguagem de programação orientada a objeto",
+    "opcao4": "São designs de padrões",
+    "resposta": "Paradigma de programação",
+    "exame": {
+        "exameId": 1
+    }
+}
+
+### BUSCAR TODAS AS PERGUNTAS
+GET http://localhost:8080/pergunta/
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
+
+### BUSCAR PERGUNTA POR ID
+GET http://localhost:8080/pergunta/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
+
+### DELETAR POR ID
+DELETE http://localhost:8080/pergunta/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
+
+### LISTAR PERGUNTA POR EXAME
+GET http://localhost:8080/pergunta/exame/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
+
+### LISTAR PERGUNTA DE EXAME COMO ADMINISTRADOR
+GET http://localhost:8080/pergunta/exame/todos/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImV4cCI6MTcyMTkwMDc1OSwiaWF0IjoxNzIxODY0NzU5fQ.zREufxgjvN9f-ZcGRK60dwYotzG_64900CrwtQsikFU
 
 
