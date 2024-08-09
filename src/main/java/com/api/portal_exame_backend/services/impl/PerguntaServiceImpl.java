@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.api.portal_exame_backend.exception.ResourceNotFoundException;
 import com.api.portal_exame_backend.model.Exame;
 import com.api.portal_exame_backend.model.Pergunta;
+import com.api.portal_exame_backend.repositories.ExameRepository;
 import com.api.portal_exame_backend.repositories.PerguntaRepository;
 import com.api.portal_exame_backend.services.PerguntaService;
 
@@ -18,8 +19,27 @@ public class PerguntaServiceImpl implements PerguntaService {
     @Autowired
     private PerguntaRepository perguntaRepository;
 
+    @Autowired
+    private ExameRepository exameRepository;
+
     @Override
     public Pergunta criarPergunta(Pergunta pergunta) {
+
+        Long exameId = pergunta.getExame().getExameId();
+
+        // Verificar se o exame existe
+        if (!exameRepository.existsById(exameId)) {
+            throw new ResourceNotFoundException("Exame com ID " + exameId + " não encontrado.");
+        }
+
+        // Contar o número de perguntas associadas ao exame
+        long count = contarPerguntasPorExameId(exameId);
+
+        // Verificar se o limite de 10 perguntas já foi atingido
+        if (count >= 10) {
+            throw new IllegalStateException("O limite de 10 perguntas para este exame já foi atingido.");
+        }
+
         return perguntaRepository.save(pergunta);
     }
 
@@ -66,6 +86,11 @@ public class PerguntaServiceImpl implements PerguntaService {
     @Override
     public Pergunta listarPergunta(Long perguntaId) {
         return this.perguntaRepository.getOne(perguntaId);  // O método getOne do repositório retorna uma referência à entidade sem carregá-la imediatamente do banco de dados (lazy loading).
+    }
+
+    @Override
+    public Long contarPerguntasPorExameId(Long exameId) {
+        return perguntaRepository.countByExameId(exameId);
     }
 
 }

@@ -21,4 +21,6 @@ public interface PerguntaService {
 
     Pergunta listarPergunta(Long perguntaId);
 
+    Long contarPerguntasPorExameId(Long exameId);
+
 }

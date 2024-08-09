@@ -121,6 +121,13 @@ public class PerguntaController {
         return ResponseEntity.ok(respostas);
     }
 
+    // http://localhost:8080/pergunta/exame/contar/{exameId}
+    @GetMapping("/exame/contar/{exameId}")
+    public ResponseEntity<Long> contarPerguntas(@PathVariable Long exameId) {
+        Long count = perguntaService.contarPerguntasPorExameId(exameId);
+        return ResponseEntity.ok(count);
+    }
+
 }
 
 /*Sobre sublist()
