@@ -19,9 +19,9 @@ import com.api.portal_exame_backend.model.Usuario;
 import com.api.portal_exame_backend.model.UsuarioRole;
 import com.api.portal_exame_backend.services.UsuarioService;
 
+//@CrossOrigin("*")   
 @RestController
 @RequestMapping("/usuarios")
-@CrossOrigin("*")
 public class UsuarioController {
 
     @Autowired

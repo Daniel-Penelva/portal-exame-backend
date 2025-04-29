@@ -24,9 +24,9 @@ import com.api.portal_exame_backend.model.Pergunta;
 import com.api.portal_exame_backend.services.ExameService;
 import com.api.portal_exame_backend.services.PerguntaService;
 
+//@CrossOrigin("*")   
 @RestController                                  
 @RequestMapping("/pergunta")                    
-@CrossOrigin("*")   
 public class PerguntaController {
 
     @Autowired

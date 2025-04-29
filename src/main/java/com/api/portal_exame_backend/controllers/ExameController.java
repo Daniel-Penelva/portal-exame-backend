@@ -18,9 +18,9 @@ import com.api.portal_exame_backend.model.Categoria;
 import com.api.portal_exame_backend.model.Exame;
 import com.api.portal_exame_backend.services.ExameService;
 
+//@CrossOrigin("*")
 @RestController
 @RequestMapping("/exame")
-@CrossOrigin("*")
 public class ExameController {
 
     @Autowired

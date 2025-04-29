@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.api.portal_exame_backend.model.Categoria;
 import com.api.portal_exame_backend.services.CategoriaService;
 
+//@CrossOrigin("*")                             // Permite solicitações de qualquer origem (Cross-Origin Resource Sharing). O asterisco (*) significa que qualquer domínio pode acessar os endpoints deste controlador.
 @RestController                                  // Indica que a classe é um controlador REST e que cada método retorna diretamente um objeto JSON ou XML como resposta.
-@RequestMapping("/categoria")                    // URL base para todos os endpoints dentro desta classe. Todas as rotas começam com /categoria.
-@CrossOrigin("*")                                // Permite solicitações de qualquer origem (Cross-Origin Resource Sharing). O asterisco (*) significa que qualquer domínio pode acessar os endpoints deste controlador.
+@RequestMapping("/categoria")                    // URL base para todos os endpoints dentro desta classe. Todas as rotas começam com /categoria.                            
 public class CategoriaController {
 
     @Autowired

@@ -22,8 +22,8 @@ import com.api.portal_exame_backend.model.JwtResponse;
 import com.api.portal_exame_backend.model.Usuario;
 import com.api.portal_exame_backend.services.impl.UserDetailsServiceImpl;
 
+//@CrossOrigin("*")
 @RestController
-@CrossOrigin("*")
 public class AuthenticationController {
 
     @Autowired
