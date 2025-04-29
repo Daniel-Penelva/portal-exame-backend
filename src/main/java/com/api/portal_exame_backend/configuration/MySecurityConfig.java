@@ -92,7 +92,6 @@ public class MySecurityConfig {
                 authorizeRequests
                     .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .requestMatchers("/generate-token", "/usuarios/").permitAll()     // regras de autorização que define as URLs que são permitidas sem autenticação
-                    .requestMatchers(HttpMethod.OPTIONS).permitAll()
                     .anyRequest().authenticated()                                                 // exige autenticação para qualquer outra requisição.
             )
             .exceptionHandling(exceptionHandling ->
