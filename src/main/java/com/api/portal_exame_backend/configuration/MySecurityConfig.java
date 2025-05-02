@@ -63,7 +63,7 @@ public class MySecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
 
-        final String clientAppUrl = "https://portalexame.netlify.app";
+        final String clientAppUrl = "https://dancing-nougat-1402b3.netlify.app"; // URL do aplicativo cliente (frontend) que pode acessar a API.
 
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(clientAppUrl));
